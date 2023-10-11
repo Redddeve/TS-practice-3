@@ -1,5 +1,5 @@
 class Key {
-  private signature: number;
+  private readonly signature: number;
   constructor() {
     this.signature = Math.random();
   }
@@ -21,7 +21,7 @@ class Person {
 abstract class House {
   protected door: boolean;
   protected key: Key | undefined;
-  protected tenants: Person[] = [];
+  private tenants: Person[] = [];
 
   abstract openDoor(key: Key): void;
 
@@ -30,7 +30,7 @@ abstract class House {
     this.key = key;
   }
 
-  comeIn(person: Person) {
+  comeIn(person: Person): void {
     if (this.door) {
       this.tenants.push(person);
       console.log(`${person} came in!`);
